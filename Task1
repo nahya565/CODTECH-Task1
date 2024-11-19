@@ -1,0 +1,117 @@
+/*WEB DEVELOPMENT TO CREATE TO_DO_LIST WEB APPLICATION*/
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f2f2f2;
+        }
+        .todo-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        .todo-container h2 {
+            text-align: center;
+            color: #333;
+        }
+        .input-container {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        .input-container input {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px 0 0 4px;
+            outline: none;
+        }
+        .input-container button {
+            padding: 8px;
+            border: none;
+            background-color: #28a745;
+            color: #fff;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+        .input-container button:hover {
+            background-color: #218838;
+        }
+        .todo-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .todo-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 5px;
+            background-color: #fafafa;
+        }
+        .todo-list li span {
+            flex: 1;
+        }
+        .todo-list li button {
+            background-color: #dc3545;
+            border: none;
+            color: #fff;
+            padding: 5px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .todo-list li button:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <div class="todo-container">
+        <h2>To-Do List</h2>
+        <div class="input-container">
+            <input type="text" id="todo-input" placeholder="Enter a new task...">
+            <button onclick="addTodo()">Add</button>
+        </div>
+        <ul id="todo-list" class="todo-list"></ul>
+    </div>
+
+    <script>
+        function addTodo() {
+            const todoInput = document.getElementById("todo-input");
+            const todoList = document.getElementById("todo-list");
+
+            if (todoInput.value.trim() !== "") {
+                const listItem = document.createElement("li");
+                const todoText = document.createElement("span");
+                todoText.textContent = todoInput.value;
+                
+                const deleteButton = document.createElement("button");
+                deleteButton.textContent = "Delete";
+                deleteButton.onclick = function() {
+                    todoList.removeChild(listItem);
+                };
+
+                listItem.appendChild(todoText);
+                listItem.appendChild(deleteButton);
+                todoList.appendChild(listItem);
+                
+                todoInput.value = "";
+            }
+        }
+    </script>
+</body>
+</html>
